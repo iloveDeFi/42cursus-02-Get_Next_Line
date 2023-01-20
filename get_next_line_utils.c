@@ -6,57 +6,67 @@
 /*   By: bbessard <bbessard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 15:10:39 by bbessard          #+#    #+#             */
-/*   Updated: 2023/01/19 13:55:26 by bbessard         ###   ########.fr       */
+/*   Updated: 2023/01/20 10:51:18 by bbessard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-size_t ft_strlen(const char *s)
+int	ft_strlen(const char *str)
 {
-	int i;
+	int	i;
 
 	i = 0;
-	while(s[i])
+	if (str[i] == '\0')
+		return (0);
+	while (str[i] != '\0')
+			i++;
+	return (i);
+}
+
+char	*ft_strchr(char *str, int c)
+{
+	int	i;
+
+	i = 0;
+	while (str[i] != '\0')
+	{
+		if (str[i] == (char)c)
+			return ((char *)str + i);
 		i++;
-	return(i);
+	}
+	if (str[i] == (char)c)
+		return ((char *)str);
+	if ((char)c == '\0')
+		return ((char *)str);
+	return (0);
 }
 
-/*
-The SUBSTR( ) function returns characters from the string value starting at the 
-character position specified by start. The number of characters returned 
-is specified by length.
-*/
-char	*ft_substr(char const *s, unsigned int start, size_t len)
+char	*ft_strjoin(char const *s1, char const *s2)
 {
+	char	*result;
+	int		i;
+	int		j;
+	int		len;
 
-}
-
-/*
-Searches for the first occurrence of the character c 
-(an unsigned char)in the string pointed to by the argument str.
-*/
-char	*ft_strchr(const char *s, int i)
-{
-
-}
-
-/*
-The function strdup() is used to duplicate a string. It returns a pointer 
-to null-terminated byte string.
-*/
-char	*ft_strdup(const char *s)
-{
-
-}
-
-/*
-str = strjoin( C ) constructs str by linking the elements of C with a space 
-between consecutive elements. C can be a cell array of character vectors or a 
-string array. str = strjoin( C , delimiter ) constructs str by linking each element 
-of C with the elements in delimiter .
-*/
-char	*strjoin(char const *s1, char const *s2)
-{
-
+	i = 0;
+	j = 0;
+	len = (ft_strlen(s1) + ft_strlen(s2));
+	result = malloc(sizeof(char) * (len + 1));
+	if (result == NULL)
+		return (NULL);
+	while (s1[i] != '\0')
+	{
+		result[i] = s1[i];
+		i++;
+	}
+	while (s2[j] != '\0')
+	{
+		result[i] = s2[j];
+		i++;
+		j++;
+	}
+	result[i] = '\0';
+	free ((void *)(s1));
+	return (result);
 }
