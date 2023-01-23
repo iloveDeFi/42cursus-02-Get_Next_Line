@@ -6,23 +6,25 @@
 /*   By: bbessard <bbessard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 10:46:31 by bbessard          #+#    #+#             */
-/*   Updated: 2023/01/21 17:08:17 by bbessard         ###   ########.fr       */
+/*   Updated: 2023/01/23 17:10:14 by bbessard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 // ssize_t read(int fildes, void *buf, size_t nbyte);
-// ssize_t read(7, void *buf, 5);
-// buf = Hello
-// nbyte 5
+// ex : ssize_t read(7, "hello", 5);
+// buf = Hello ; nbyte 5
+
 // envoyer le buffer dans une variable de réserve stash
-// free ou ecraser le buffer
+// free ou écraser le buffer
 // boucler
 // Si dans la stash \n ou 0 ou $
 // extraire cette ligne dans une variable line la réserve mais que avant le $
 // enlever de la réserve stash ce qu'on a extrait
 // get_next_line return (line)
+
 // problème de tete de lecture. Le curseur reste au meme endroit 
 //quand on rappelle GNL mais la stash est écrasée donc rendre la stash static
+
 // La taille du buffer sera définie à la compilation
 // ft_strjoin pour join le left_c dans tmp avec le buffer
 // strchr pour chercher le \n  dans le buffer
@@ -34,6 +36,25 @@ static char	*_fill_line_buffer(int fd, char *left_c, char *buffer);
 static char	*_set_line(char *line);
 static char	*ft_strchr(char *s, int c);
 
+/*
+La fonction principale get_next_line effectue principalement des vérifications 
+sur le descripteur de fichier et sur les différentes allocations de mémoire qui 
+pourraient se produire. Une fois toutes les vérifications effectuées, elle 
+appelle la fonction _fill_line_buffer pour lire le descripteur de fichier 
+jusqu'à ce qu'elle trouve un caractère \n ou \0.
+Une fois la variable line remplie, nous libérons le buffer pour éviter toute 
+fuite de mémoire, puisqu'il n'est plus utilisé par la suite. Une fois le buffer 
+libéré, nous fixons la line avec la fonction _set_line et nous retournons 
+la line, en stockant la valeur de retour de _set_line dans une variable statique 
+de sorte que la prochaine fois que nous appelons la fonction get_next_line, 
+nous ayons accès aux premiers caractères de la line qui ont pu 
+être lus auparavant. Par exemple, notre fichier contient 1\n234\0, 
+notre BUFFER_SIZE est de 4. La première fois que nous lirons le fichier, 
+nous lirons 1\n23, donc ce que nous allons stocker dans notre variable statique 
+est 23 parce que la prochaine fois que nous appellerons la fonction sur le même 
+descripteur de fichier, elle commencera à lire au 4ème caractère du fichier.
+*/
+
 char	*get_next_line(int fd)
 {
 	static char	*left_c;
@@ -41,7 +62,7 @@ char	*get_next_line(int fd)
     char	*buffer;
     
     buffer = (char *)malloc((BUFFER_SIZE + 1) * sizeof(char));
-    if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
+    if (fd < 0 || BUFFER_SIZE < 1 || read(fd, 0, 0) < 0)
     {
 		free(left_c);
 		free(buffer);
@@ -60,6 +81,14 @@ char	*get_next_line(int fd)
 	return (line);
 }
 
+/*
+Cette fonction prend le buffer de line comme paramètre, elle le lit 
+jusqu'à ce qu'un caractère \n ou \0 soit trouvé, signifiant la fin d'une ligne, 
+ou la fin du fichier. Cette fonction met le 
+buffer de line à \0 à la fin de la ligne qui s'y trouve et renvoie 
+une sous-chaîne du buffer, de la fin de la ligne à la fin du bufer. 
+Cette sous-chaîne est retournée en tant que left_c.
+*/
 static char *_set_line(char *line_buffer)
 {
     char    *left_c;
@@ -80,6 +109,16 @@ static char *_set_line(char *line_buffer)
     return (left_c);
 }
 
+/*
+Cette fonction remplit le Buffer (mémoire tampon).
+Elle lira les caractères BUFFER_SIZE à chaque itération jusqu'à ce 
+qu'il y ait un caractère \n ou \0 dans le BUFFER. À chaque 
+fois que la boucle est parcourue, elle vérifie s'il y a déjà des données 
+dans le BUFFER left_c. Si c'est le cas, elle y ajoute les nouveaux 
+caractères lus. Sinon, il dupliquera le contenu du BUFFER de lecture 
+dans le BUFFER left_c. Si une erreur est trouvée, elle sort de la boucle 
+et retourne le BUFFER left_c après y avoir ajouté les caractères lus.
+*/
 static char	*_fill_line_buffer(int fd, char *left_c, char *buffer)
 {
 	ssize_t	b_read;
@@ -108,26 +147,28 @@ static char	*_fill_line_buffer(int fd, char *left_c, char *buffer)
 	}
 	return (left_c);
 }
-
-static char	*ft_strchr(char *s, int c)
+// Cette fonction recherche la première occurrence du caractère passé 
+// en second paramètre dans la chaîne de caractères spécifiée 
+// via le premier paramètre.
+char *strchr(const char *string, int searchedChar)
 {
 	unsigned int	i;
-	char			cc;
+	char			c;
 
-	cc = (char) c;
+	searchedChar = (char) c;
 	i = 0;
-	while (s[i])
+	while (string[i])
 	{
-		if (s[i] == cc)
-			return ((char *) &s[i]);
+		if (string[i] == c)
+			return ((char *) &string[i]);
 		i++;
 	}
-	if (s[i] == cc)
-		return ((char *) &s[i]);
+	if (string[i] == c)  	
+		return ((char *) &string[i]);
 	return (NULL);
 }
 
-int main()
+/*int main()
 {
 	int	fd;
 	char *line;
@@ -143,6 +184,7 @@ int main()
 	}
 	return(0);
 }
+*/
 
 /*
 int	main(int ac, char	**av)
@@ -158,3 +200,4 @@ int	main(int ac, char	**av)
 	printf("%s\n", get_next_line(fd));
 }
 */
+
