@@ -6,7 +6,7 @@
 /*   By: bbessard <bbessard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 10:46:31 by bbessard          #+#    #+#             */
-/*   Updated: 2023/01/23 17:10:14 by bbessard         ###   ########.fr       */
+/*   Updated: 2023/01/24 14:54:53 by bbessard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -150,30 +150,31 @@ static char	*_fill_line_buffer(int fd, char *left_c, char *buffer)
 // Cette fonction recherche la première occurrence du caractère passé 
 // en second paramètre dans la chaîne de caractères spécifiée 
 // via le premier paramètre.
-char *strchr(const char *string, int searchedChar)
+static char	*ft_strchr(char *s, int c)
 {
 	unsigned int	i;
-	char			c;
+	char			cc;
 
-	searchedChar = (char) c;
+	cc = (char) c;
 	i = 0;
-	while (string[i])
+	while (s[i])
 	{
-		if (string[i] == c)
-			return ((char *) &string[i]);
+		if (s[i] == cc)
+			return ((char *) &s[i]);
 		i++;
 	}
-	if (string[i] == c)  	
-		return ((char *) &string[i]);
+	if (s[i] == cc)
+		return ((char *) &s[i]);
 	return (NULL);
 }
 
-/*int main()
+
+int main()
 {
 	int	fd;
 	char *line;
 
-	fd = open("text.txt", O_RDONLY);
+	fd = open("test.fd", O_RDONLY);
 	while (1)
 	{
 		line = get_next_line(fd);
@@ -184,20 +185,4 @@ char *strchr(const char *string, int searchedChar)
 	}
 	return(0);
 }
-*/
-
-/*
-int	main(int ac, char	**av)
-{
-	(void)ac;
-	(void)av;
-	int	fd ;
-	
-	fd = open("text.txt", O_RDONLY);
-	printf("%s", get_next_line(fd));
-	printf("%s", get_next_line(fd));
-	printf("%s\n", get_next_line(fd));
-	printf("%s\n", get_next_line(fd));
-}
-*/
 
