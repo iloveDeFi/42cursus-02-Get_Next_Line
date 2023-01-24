@@ -6,7 +6,7 @@
 /*   By: bbessard <bbessard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 10:46:31 by bbessard          #+#    #+#             */
-/*   Updated: 2023/01/24 14:54:53 by bbessard         ###   ########.fr       */
+/*   Updated: 2023/01/24 15:01:59 by bbessard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -168,7 +168,7 @@ static char	*ft_strchr(char *s, int c)
 	return (NULL);
 }
 
-
+/*
 int main()
 {
 	int	fd;
@@ -185,4 +185,4 @@ int main()
 	}
 	return(0);
 }
-
+*/
