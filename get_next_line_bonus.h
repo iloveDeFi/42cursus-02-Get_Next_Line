@@ -6,7 +6,7 @@
 /*   By: bbessard <bbessard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 18:46:23 by bbessard          #+#    #+#             */
-/*   Updated: 2023/01/25 09:42:08 by bbessard         ###   ########.fr       */
+/*   Updated: 2023/01/25 10:27:17 by bbessard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,6 @@ ajustée selon les besoins.
 # include <stdlib.h>
 # include <unistd.h>
 # include <fcntl.h> 
-#include <stdio.h>
-
 
 char    *get_next_line(int fd);
 char    *ft_strdup(char *s);
