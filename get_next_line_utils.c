@@ -6,7 +6,7 @@
 /*   By: bbessard <bbessard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 15:10:39 by bbessard          #+#    #+#             */
-/*   Updated: 2023/01/25 10:27:22 by bbessard         ###   ########.fr       */
+/*   Updated: 2023/01/25 16:39:16 by bbessard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ size_t	ft_strlen(char *s)
 	return (i);
 }
 
+// This function extract the characters from int start (i++ x size_t len)
 char	*ft_substr(char *s, unsigned int start, size_t len)
 {
 	size_t	i;
@@ -63,6 +64,13 @@ char	*ft_substr(char *s, unsigned int start, size_t len)
 	str[i] = 0;
 	return (str);
 }
+/*
+int main() {
+  char *str = "elle mange";
+  printf("%s\n", ft_substr(str, 2, 5));
+  return 0;
+}
+*/
 
 char	*ft_strjoin(char *s1, char *s2)
 {
