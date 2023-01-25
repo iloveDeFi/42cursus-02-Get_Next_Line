@@ -6,11 +6,11 @@
 /*   By: bbessard <bbessard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 18:46:28 by bbessard          #+#    #+#             */
-/*   Updated: 2023/01/24 15:00:09 by bbessard         ###   ########.fr       */
+/*   Updated: 2023/01/25 09:49:03 by bbessard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 char	*ft_strdup(char *s1)
 {

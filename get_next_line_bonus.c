@@ -6,11 +6,12 @@
 /*   By: bbessard <bbessard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 18:45:20 by bbessard          #+#    #+#             */
-/*   Updated: 2023/01/24 15:19:35 by bbessard         ###   ########.fr       */
+/*   Updated: 2023/01/25 09:45:15 by bbessard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
+#include <stdio.h>
 
 static char		*_fill_line_buffer(int fd, char *left_c, char *buffer);
 static char		*_set_line(char *line);
@@ -131,7 +132,7 @@ static char	*ft_strchr(char *s, int c)
 	return (NULL);
 }
 
-/*
+
 int main()
 {
 	int	fd;
@@ -148,4 +149,4 @@ int main()
 	}
 	return(0);
 }
-*/
+
