@@ -6,7 +6,7 @@
 /*   By: bbessard <bbessard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 18:45:20 by bbessard          #+#    #+#             */
-/*   Updated: 2023/01/25 10:27:07 by bbessard         ###   ########.fr       */
+/*   Updated: 2023/01/26 11:16:44 by bbessard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,13 +132,13 @@ static char	*ft_strchr(char *s, int c)
 	return (NULL);
 }
 
-
+/*
 int main()
 {
 	int	fd;
 	char *line;
 
-	fd = open("test.fd", O_RDONLY);
+	fd = open("fd.fd", O_RDONLY);
 	while (1)
 	{
 		line = get_next_line(fd);
@@ -149,4 +149,4 @@ int main()
 	}
 	return(0);
 }
-
+*/

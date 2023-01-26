@@ -6,7 +6,7 @@
 /*   By: bbessard <bbessard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 10:46:31 by bbessard          #+#    #+#             */
-/*   Updated: 2023/01/25 10:27:23 by bbessard         ###   ########.fr       */
+/*   Updated: 2023/01/26 11:16:43 by bbessard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -174,7 +174,7 @@ int main()
 	int	fd;
 	char *line;
 
-	fd = open("test.fd", O_RDONLY);
+	fd = open("fd.fd", O_RDONLY);
 	while (1)
 	{
 		line = get_next_line(fd);
